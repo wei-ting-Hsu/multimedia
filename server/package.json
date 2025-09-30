@@ -1,0 +1,24 @@
+{
+  "name": "event-form-automation-server",
+  "version": "1.0.0",
+  "description": "Backend service for automated Google Form and Apps Script setup",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [
+    "google-forms",
+    "apps-script",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "googleapis": "^135.0.0"
+  }
+}
