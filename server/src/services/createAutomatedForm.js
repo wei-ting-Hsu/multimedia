@@ -17,7 +17,8 @@ export async function createAutomatedForm({ activityName, sessions, emailTemplat
   await pushAppsScript({
     scriptId: sheetId,
     sessions: sessionOptions,
-    emailTemplate
+    emailTemplate,
+    activityName
   });
 
   return {

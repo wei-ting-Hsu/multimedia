@@ -17,6 +17,8 @@ multimedia/
 - 使用者可輸入活動名稱、場次列表與自動回信內容。
 - 呼叫後端 `/api/forms` API 後，將回傳的表單與試算表連結展示在畫面上。
 
+預設畫面已帶入「科技講座」的示範資料（三個場次、每場兩人），也可自行調整。
+
 使用方法：
 
 1. 啟動任意靜態伺服器（例如 `npx serve client` 或將 `client/` 資料夾放到 GitHub Pages）。
@@ -86,3 +88,14 @@ npm run start
 - Service Account 需對目標 Google Workspace 擁有授權（或透過 Domain-wide delegation）。
 - Apps Script 模板內容可視需求調整，自動回信與額滿邏輯皆以 service account 權限執行。
 - 由於測試環境無法連線 Google API，本範例程式碼未經實際串接測試，部署前請於實際環境驗證流程。
+
+### 自動回信占位符
+
+寄出的郵件標題與內文支援以下占位符，系統會在寄信前自動帶入對應資訊：
+
+| 占位符 | 內容 |
+| ------ | ---- |
+| `{{activityName}}` | 活動名稱 |
+| `{{name}}` | 填寫者的姓名 |
+| `{{session}}` | 填寫者選擇的場次 |
+| `{{email}}` | 填寫者的 Email |

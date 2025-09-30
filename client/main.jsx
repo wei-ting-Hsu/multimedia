@@ -2,14 +2,18 @@ const { useState } = React;
 
 const defaultEmailTemplate = {
   subject: '【{{activityName}}】報名成功通知',
-  body: '您好，\n感謝您報名 {{activityName}}，我們已成功收到您的資料。\n更多資訊將在活動前透過 Email 發送。'
+  body: '親愛的 {{name}} 您好：\n\n感謝您報名本次活動！\n您已成功報名的場次為：{{session}}\n\n期待與您見面！\n— 活動小組'
 };
 
 const emptySession = { name: '', capacity: 50 };
 
 function App() {
-  const [activityName, setActivityName] = useState('');
-  const [sessions, setSessions] = useState([{ ...emptySession }]);
+  const [activityName, setActivityName] = useState('科技講座');
+  const [sessions, setSessions] = useState([
+    { name: '場次A', capacity: 2 },
+    { name: '場次B', capacity: 2 },
+    { name: '場次C', capacity: 2 }
+  ]);
   const [emailTemplate, setEmailTemplate] = useState(defaultEmailTemplate);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
@@ -49,10 +53,7 @@ function App() {
         body: JSON.stringify({
           activityName,
           sessions,
-          emailTemplate: {
-            subject: emailTemplate.subject.replaceAll('{{activityName}}', activityName),
-            body: emailTemplate.body.replaceAll('{{activityName}}', activityName)
-          }
+          emailTemplate
         })
       });
 
@@ -138,7 +139,9 @@ function App() {
               required
             />
           </div>
-          <small>提示：可使用 {{'{{activityName}}'}} 作為活動名稱的占位符。</small>
+          <small>
+            提示：可使用 {{'{{activityName}}'}}、{{'{{name}}'}}、{{'{{session}}'}}、{{'{{email}}'}} 等占位符插入活動名稱、填表人姓名、選擇場次與 Email。
+          </small>
         </fieldset>
 
         <button type="submit" disabled={loading}>
